@@ -1,0 +1,26 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+namespace: dev
+
+
+labels:
+- includeSelectors: true
+  pairs:
+    app.gigcloud.io/environment: dev
+
+nameSuffix: -dev
+
+resources:
+- namespace.yaml
+- ../../base
+
+patches:
+- path: configmap-patch.yaml
+
+- patch: |-
+    - op: replace
+      path: /spec/ports/0/nodePort
+      value: 30080
+  target:
+    kind: Service
+    name: nginx-service

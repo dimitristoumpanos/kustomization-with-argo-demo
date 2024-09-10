@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-html
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Hello from staging</title>
+    </head>
+    <body>
+        <h1>Hello from staging!</h1>
+    </body>
+    </html>
